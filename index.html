@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-
-<! Ini adalah contoh membuat komentar di HTML contoh project >
-
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kalkulator BMI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kalkulator BMI - PWA</title>
+
+  <!-- Link manifest -->
+  <link rel="manifest" href="manifest.json" />
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -63,10 +64,10 @@
   <h2>Kalkulator BMI</h2>
 
   <label for="berat">Berat Badan (kg):</label>
-  <input type="number" id="berat" min="1" placeholder="Contoh: 70">
+  <input type="number" id="berat" min="1" placeholder="Contoh: 70" />
 
   <label for="tinggi">Tinggi Badan (cm):</label>
-  <input type="number" id="tinggi" min="1" placeholder="Contoh: 165">
+  <input type="number" id="tinggi" min="1" placeholder="Contoh: 165" />
 
   <button onclick="hitungBMI()">Hitung BMI</button>
 
@@ -75,7 +76,7 @@
   <script>
     function hitungBMI() {
       const berat = parseFloat(document.getElementById("berat").value);
-      const tinggi = parseFloat(document.getElementById("tinggi").value) / 100; // cm ke meter
+      const tinggi = parseFloat(document.getElementById("tinggi").value) / 100;
       const hasilEl = document.getElementById("hasilBMI");
 
       if (!berat || !tinggi) {
@@ -84,11 +85,30 @@
       }
 
       const bmi = berat / (tinggi * tinggi);
-      const kategori = bmi < 18.5 ? "Kurus" :
-                       bmi < 25 ? "Normal" :
-                       bmi < 30 ? "Gemuk" : "Obesitas";
+      const kategori =
+        bmi < 18.5
+          ? "Kurus"
+          : bmi < 25
+          ? "Normal"
+          : bmi < 30
+          ? "Gemuk"
+          : "Obesitas";
 
       hasilEl.innerText = `BMI Anda: ${bmi.toFixed(1)} (${kategori})`;
+    }
+
+    // Register service worker untuk offline
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(() => {
+            console.log("Service Worker terdaftar");
+          })
+          .catch((error) => {
+            console.error("Registrasi Service Worker gagal:", error);
+          });
+      });
     }
   </script>
 </body>
