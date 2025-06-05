@@ -9,7 +9,8 @@
   <link rel="manifest" href="manifest.json" />
 
   <style>
-    body {
+    body 
+    {
       font-family: Arial, sans-serif;
       padding: 20px;
       max-width: 500px;
@@ -17,17 +18,20 @@
       background-color: #f8f9fa;
     }
 
-    h2 {
+    h2 
+    {
       text-align: center;
     }
 
-    label {
+    label 
+    {
       display: block;
       margin-top: 15px;
       font-weight: bold;
     }
 
-    input[type="number"] {
+    input[type="number"] 
+    {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -36,7 +40,8 @@
       border-radius: 5px;
     }
 
-    button {
+    button 
+    {
       margin-top: 20px;
       width: 100%;
       padding: 12px;
@@ -48,11 +53,13 @@
       cursor: pointer;
     }
 
-    button:hover {
+    button:hover 
+    {
       background-color: #0056b3;
     }
 
-    .hasil {
+    .hasil 
+    {
       margin-top: 20px;
       text-align: center;
       font-size: 18px;
@@ -60,6 +67,8 @@
     }
   </style>
 </head>
+
+  
 <body>
   <h2>Kalkulator BMI</h2>
 
@@ -74,12 +83,14 @@
   <div class="hasil" id="hasilBMI"></div>
 
   <script>
-    function hitungBMI() {
+    function hitungBMI() 
+    {
       const berat = parseFloat(document.getElementById("berat").value);
       const tinggi = parseFloat(document.getElementById("tinggi").value) / 100;
       const hasilEl = document.getElementById("hasilBMI");
 
-      if (!berat || !tinggi) {
+      if (!berat || !tinggi) 
+      {
         hasilEl.innerText = "Mohon isi berat dan tinggi dengan benar.";
         return;
       }
@@ -97,8 +108,12 @@
       hasilEl.innerText = `BMI Anda: ${bmi.toFixed(1)} (${kategori})`;
     }
 
+
+
+    
     // Register service worker untuk offline
-    if ("serviceWorker" in navigator) {
+    if ("serviceWorker" in navigator) 
+    {
       window.addEventListener("load", () => {
         navigator.serviceWorker
           .register("service-worker.js")
@@ -110,6 +125,9 @@
           });
       });
     }
+
+
+    
   </script>
 </body>
 </html>
